@@ -41,6 +41,7 @@ class OrderControllerTest {
         assertThat(result).bodyJson().extractingPath("$.length()").isEqualTo(2);
         assertThat(result).bodyJson().extractingPath("$[0].description").isEqualTo("MacBook Pro");
         assertThat(result).bodyJson().extractingPath("$[1].status").isEqualTo("SHIPPED");
+        assertThat(result).bodyJson().extractingPath("$[0].createdAt").isNotNull();
     }
 
     @Test
