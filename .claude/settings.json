@@ -1,3 +1,11 @@
 {
-  "worktree": { "baseRef": "head" }
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)", "Edit(./.env)"]
+  },
+  "worktree": { "baseRef": "head" },
+  "hooks": {
+    "PostToolUse": [{ "matcher": "Edit|Write",
+      "hooks": [{ "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}\"/.claude/hooks/format-file.sh" }] }],
+    "Stop": [{ "hooks": [{ "type": "command", "command": "\"${CLAUDE_PROJECT_DIR}\"/.claude/hooks/run-tests.sh" }] }]
+  }
 }
